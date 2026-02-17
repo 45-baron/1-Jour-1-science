@@ -34,7 +34,6 @@ function App() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/ranking" element={<Ranking />} />
-                <Route path="/archives" element={<PublicArchives />} />
                 <Route path="/organizer-login" element={<OrganizerLogin />} />
                 <Route path="*" element={<Home />} />
 
