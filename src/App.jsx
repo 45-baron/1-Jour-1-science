@@ -18,6 +18,7 @@ import QuizOfTheDay from './pages/QuizOfTheDay';
 import CreateCompetition from './pages/CreateCompetition';
 import CompetitionQuestions from './pages/CompetitionQuestions';
 import OrganizerCorrectCompetition from './pages/OrganizerCorrectCompetition';
+import PublicArchives from './pages/PublicArchives';
 
 function App() {
   return (
@@ -26,98 +27,98 @@ function App() {
         <Router>
           <div className="flex flex-col min-h-screen">
             <Header />
-            <main className="grow">
+            <main className="pt-8">
               <Routes>
+                {/* Routes publiques */}
                 <Route path="/" element={<Home />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/ranking" element={<Ranking />} />
+                <Route path="/archives" element={<PublicArchives />} />
                 <Route path="/organizer-login" element={<OrganizerLogin />} />
-                
+                <Route path="*" element={<Home />} />
+
                 {/* Routes Joueurs */}
-                <Route 
-                  path="/search-competition" 
+                <Route
+                  path="/search-competition"
                   element={
                     <ProtectedRoute>
                       <SearchCompetition />
                     </ProtectedRoute>
-                  } 
+                  }
                 />
-                
-                <Route 
-                  path="/quiz/:sessionId" 
+
+                <Route
+                  path="/quiz"
+                  element={
+                    <ProtectedRoute>
+                      <QuizOfTheDay />
+                    </ProtectedRoute>
+                  }
+                />
+
+                <Route
+                  path="/quiz/:sessionId"
                   element={
                     <ProtectedRoute>
                       <AnswerQuestions />
                     </ProtectedRoute>
-                  } 
+                  }
                 />
-                
+
+                <Route
+                  path="/competition/:competitionId"
+                  element={
+                    <ProtectedRoute>
+                      <CompetitionQuestions />
+                    </ProtectedRoute>
+                  }
+                />
+
                 {/* Routes Organisateur */}
-                <Route 
-                  path="/organizer/dashboard" 
+                <Route
+                  path="/organizer/dashboard"
                   element={
                     <ProtectedRoute requireOrganizer={true}>
                       <OrganizerDashboard />
                     </ProtectedRoute>
-                  } 
+                  }
                 />
-                  <Route 
-  path="/competition/:competitionId" 
-  element={
-    <ProtectedRoute>
-      <CompetitionQuestions />
-    </ProtectedRoute>
-  } 
-/>
-                <Route 
-                  path="/organizer/create-competition" 
+
+                <Route
+                  path="/organizer/create-competition"
                   element={
                     <ProtectedRoute requireOrganizer={true}>
                       <CreateCompetition />
                     </ProtectedRoute>
-                  } 
+                  }
                 />
-                <Route 
-  path="/quiz" 
-  element={
-    <ProtectedRoute>
-      <QuizOfTheDay />
-    </ProtectedRoute>
-  } 
-/>
-                <Route 
-  path="/organizer/competition/:competitionId/create-session" 
-  element={
-    <ProtectedRoute requireOrganizer={true}>
-      <CreateQuestionSession />
-    </ProtectedRoute>
-  } 
-/>
-                <Route 
-  path="/organizer/create-competition" 
-  element={
-    <ProtectedRoute requireOrganizer={true}>
-      <CreateCompetition />
-    </ProtectedRoute>
-  } 
-/>
 
-<Route 
-  path="/organizer/competition/:competitionId" 
-  element={
-    <ProtectedRoute requireOrganizer={true}>
-      <OrganizerCorrectCompetition />
-    </ProtectedRoute>
-  } 
-/>
-                <Route 
-                  path="/organizer/correct-submissions/:sessionId" 
+                <Route
+                  path="/organizer/competition/:competitionId/create-session"
+                  element={
+                    <ProtectedRoute requireOrganizer={true}>
+                      <CreateQuestionSession />
+                    </ProtectedRoute>
+                  }
+                />
+
+                <Route
+                  path="/organizer/competition/:competitionId"
+                  element={
+                    <ProtectedRoute requireOrganizer={true}>
+                      <OrganizerCorrectCompetition />
+                    </ProtectedRoute>
+                  }
+                />
+
+                <Route
+                  path="/organizer/correct-submissions/:sessionId"
                   element={
                     <ProtectedRoute requireOrganizer={true}>
                       <CorrectSubmissions />
                     </ProtectedRoute>
-                  } 
+                  }
                 />
               </Routes>
             </main>
