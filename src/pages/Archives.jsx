@@ -5,10 +5,10 @@ import {
   getDocs, 
   query, 
   orderBy,
-  doc,
-  getDoc
+
 } from 'firebase/firestore';
 import { db } from '../services/firebase';
+import { onSnapshot } from 'firebase/firestore';
 
 function Archives() {
   const { isRTL } = useLanguage();
@@ -19,14 +19,29 @@ function Archives() {
   const [loadingQuestions, setLoadingQuestions] = useState(false);
 
   useEffect(() => {
-    loadCompetitions();
-  }, []);
+    loadCompetitions()
+    const competitionsRef = collection(db, 'competitions');
+  const q = query(competitionsRef, orderBy('date', 'desc'));
+
+  // Ceci écoute les changements en direct dans Firebase
+  const unsubscribe = onSnapshot(q, (querySnapshot) => {
+    const competitionsData = [];
+    querySnapshot.forEach((doc) => {
+      competitionsData.push({ id: doc.id, ...doc.data() });
+    });
+    setCompetitions(competitionsData);
+    setLoading(false);
+  });
+
+  return () => unsubscribe(); // Nettoyage quand on quitte la page
+}, []);
 
   // Charge toutes les compétitions (quiz) depuis Firestore
   const loadCompetitions = async () => {
-    try {
-      const quizzesRef = collection(db, 'quizzes');
-      const q = query(quizzesRef, orderBy('date', 'desc'));
+  try {
+    // REMPLACE 'quizzes' PAR 'competitions'
+    const competitionsRef = collection(db, 'competitions'); 
+    const q = query(competitionsRef, orderBy('date', 'desc'));
       const querySnapshot = await getDocs(q);
       
       const competitionsData = [];
@@ -47,7 +62,7 @@ function Archives() {
     setSelectedCompetition(competitionId);
     
     try {
-      const questionsRef = collection(db, 'quizzes', competitionId, 'questions');
+      const questionsRef = collection(db, 'competitions', competitionId, 'questions');
       const q = query(questionsRef, orderBy('order', 'asc'));
       const querySnapshot = await getDocs(q);
       
