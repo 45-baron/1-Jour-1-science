@@ -30,8 +30,8 @@ function Login() {
   const AUTHORIZED_ADMINS = [
     '+22890000000', // Ton numéro
     '+22870182109', // Autre admin
-    '+22891644232'
-     '+22891083041'          // Numéro test Firebase
+    '+22891644232',
+     '+22891083041',          // Numéro test Firebase
   ]; 
 
   useEffect(() => { 
@@ -190,4 +190,5 @@ function Login() {
 export default Login;
 
                 
+
 
