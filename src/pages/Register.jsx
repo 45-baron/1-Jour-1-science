@@ -34,7 +34,7 @@ function Register() {
         role: 'player', // Par défaut
         totalPoints: 0 
       });
-      navigate('/');
+      navigate ('/dashboard');
     } else {
       setError(result.error);
     }
@@ -86,5 +86,6 @@ function Register() {
     </div>
   );
 }
+
 
 export default Register;
