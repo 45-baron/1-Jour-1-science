@@ -1,163 +1,50 @@
 @import "tailwindcss";
 
 @theme {
-  --color-accent: #ff4d00;
-  --color-accent-glow: rgba(255, 77, 0, 0.3);
-  --color-glass-border: rgba(255, 255, 255, 0.1);
-}
-
-/* Configuration des variables par page */
-[data-page="auth"] {
-  --bg-primary: #0a0a0c;
-  --text-main: #ffffff;
-  --text-muted: #a1a1aa;
-  background: radial-gradient(circle at top right, #2a1005, #0a0a0c);
+  --color-primary-600: #8B5CF6;
+  --color-primary-700: #7C3AED;
+  --color-secondary-900: #1E3A8A;
+  --color-accent-green: #10B981;
 }
 
 :root {
-  --bg-primary: #ffffff;
-  --text-main: #000000;
-  --text-muted: #71717a;
+  --bg-primary: #FFFFFF;
+  background-color: #FFFFFF;
+  font-size: clamp(14px, 1.5vw + 10px, 18px);
 }
-
-/* Definition des utilitaires pour Tailwind v4 */
-@utility ios-glass {
-  background: rgba(255, 255, 255, 0.03);
+body {
+  /* Empêche le défilement horizontal moche sur mobile */
+  overflow-x: hidden; 
+  width: 100%;
+}
+/* Utilitaires iOS 26 Glass */
+@utility glass-card {
+  background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid var(--color-glass-border);
-  border-radius: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+}
+
+@utility glass-dark {
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 @utility ios-input {
-  width: 100%;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid var(--color-glass-border);
+  background: rgba(255, 255, 255, 0.5);
+  border: 2px solid #E5E7EB;
   border-radius: 1rem;
-  padding: 1rem 1.5rem;
-  color: white;
-  outline: none;
-  transition: all 0.2s ease;
-  
+  transition: all 0.3s ease;
   &:focus {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: var(--color-accent);
-    box-shadow: 0 0 20px var(--color-accent-glow);
+    border-color: #8B5CF6;
+    box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.2);
+    outline: none;
   }
 }
 
-@utility ios-btn {
-  background: white;
-  color: black;
-  font-weight: 800;
-  border-radius: 1rem;
-  padding: 1rem 2rem;
-  transition: all 0.2s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-  }
-
-  &:active {
-    transform: translateY(0);
-  }
-
-  &:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
-}
-
-@utility pattern-islamic {
-  position: absolute;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l15 30-15 30L15 30z' fill='%23ffffff' fill-opacity='0.05'/%3E%3C/svg%3E");
-  pointer-events: none;
-}
-/* ============================================
-   DESIGN iOS MODERNE - Classes personnalisées
-============================================ */
-
-/* Page d'authentification */
-[data-page="auth"] {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  position: relative;
-}
-
-/* Motif islamique en arrière-plan */
-.pattern-islamic {
-  position: absolute;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-  opacity: 0.5;
-}
-
-/* Effet Glass iOS */
-.ios-glass {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 24px;
-  animation: fadeIn 0.5s ease-out;
-}
-
-/* Input iOS moderne */
-.ios-input {
-  width: 100%;
-  padding: 16px 20px;
-  background: rgba(255, 255, 255, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 16px;
-  color: white;
-  font-size: 16px;
-  font-weight: 600;
-  outline: none;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
-}
-
-.ios-input::placeholder {
-  color: rgba(255, 255, 255, 0.5);
-}
-
-.ios-input:focus {
-  background: rgba(255, 255, 255, 0.2);
-  border-color: rgba(255, 255, 255, 0.5);
-  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1);
-}
-
-/* Bouton iOS moderne */
-.ios-btn {
-  padding: 16px;
-  background: linear-gradient(135deg, #ffffff 0%, rgba(255, 255, 255, 0.9) 100%);
-  color: #667eea;
-  font-weight: 800;
-  font-size: 16px;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  border: none;
-  border-radius: 16px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-}
-
-.ios-btn:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
-}
-
-.ios-btn:active:not(:disabled) {
-  transform: translateY(0);
-}
-
-.ios-btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
+@utility pattern-arabesque {
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l3 9 9 3-9 3-3 9-3-9-9-3 9-3z' fill='%238B5CF6' fill-opacity='0.05'/%3E%3C/svg%3E");
 }
