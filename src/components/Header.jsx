@@ -39,7 +39,9 @@ function Header() {
           >
             🏆 {t.ranking}
           </Link>
-
+<Link to="/archives" className="text-gray-700 hover:text-primary-600 font-medium transition-colors text-sm flex items-center gap-1">
+  📚 {isRTL ? 'الأرشيف' : 'Archives'}
+</Link>
           <Link
             to="/archives"
             className="font-bold text-slate-600 hover:text-violet-600 transition-colors uppercase text-sm tracking-widest"
@@ -122,7 +124,13 @@ function Header() {
             >
               🏆 {t.ranking}
             </Link>
-
+<Link 
+  to="/archives" 
+  className="p-3 hover:bg-primary-50 rounded-xl transition-colors font-medium flex items-center gap-2"
+  onClick={() => setIsMenuOpen(false)}
+>
+  📚 {isRTL ? 'الأرشيف' : 'Archives'}
+</Link>
             <Link
               to="/archives"
               className="p-3 hover:bg-violet-50 rounded-xl transition-colors font-bold text-slate-700 text-sm uppercase tracking-widest flex items-center gap-2"
@@ -188,3 +196,4 @@ function Header() {
 }
 
 export default Header;
+
