@@ -9,11 +9,12 @@ function Home() {
       <div className="container mx-auto px-6 grow flex flex-col justify-center items-center text-center z-10 py-20">
         <div className="w-24 h-1 bg-black mb-12 rounded-full opacity-10"></div>
 
-        <h2 className="text-8xl md:text-9xl font-black text-black tracking-tighter mb-8 uppercase italic leading-none">
+        {/* TITRE : Taille adaptée mobile (4xl) -> PC (8xl) */}
+        <h2 className="text-5xl md:text-7xl lg:text-9xl font-black text-black tracking-tighter mb-4 uppercase italic leading-none">
           {t.welcome}
         </h2>
         
-        <p className="text-xl md:text-2xl text-slate-500 max-w-2xl mx-auto mb-16 font-light leading-relaxed">
+       <p className="text-base md:text-xl text-zinc-400 max-w-xl mx-auto mb-10 font-medium leading-relaxed px-2">
           {t.welcomeMessage}
         </p>
 
@@ -52,3 +53,4 @@ function Home() {
 }
 
 export default Home;
+ 
