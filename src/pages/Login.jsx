@@ -30,8 +30,7 @@ function Login() {
   const AUTHORIZED_ADMINS = [
     '+22890000000', // Ton numéro
     '+22870182109', // Autre admin
-    '+22891644232',
-     '+22891083041',          // Numéro test Firebase
+    '+22891 64 42 32'  // Numéro test Firebase
   ]; 
 
   useEffect(() => { 
@@ -96,6 +95,17 @@ function Login() {
       setLoading(false);
     }
   };
+  const handleForgotPassword = async () => {
+  const email = prompt("Entrez votre adresse email :");
+  if (email) {
+    const result = await resetPassword(email);
+    if (result.success) {
+      alert("Lien de réinitialisation envoyé ! Vérifiez vos spams.");
+    } else {
+      alert("Erreur : " + result.error);
+    }
+  }
+};
 
   return (
     <div className="min-h-screen bg-[#0F172A] flex items-center justify-center p-6 relative overflow-hidden">
@@ -156,6 +166,12 @@ function Login() {
             <button type="submit" disabled={loading} className="w-full py-5 bg-white text-black rounded-2xl font-black text-lg shadow-xl hover:bg-slate-200 transition-all transform hover:-translate-y-1">
               {loading ? '...' : 'SE CONNECTER'}
             </button>
+            <button 
+  onClick={handleForgotPassword}
+  className="text-xs text-gray-500 hover:text-black mt-2 underline"
+>
+  Mot de passe oublié ?
+</button>
             <div className="text-center text-slate-500 text-sm mt-4">
               Pas de compte ? <Link to="/register" className="text-blue-400 font-black hover:underline">CRÉER UN COMPTE</Link>
             </div>
@@ -188,7 +204,7 @@ function Login() {
 }
 
 export default Login;
-
                 
+
 
 
