@@ -18,7 +18,7 @@ import QuizOfTheDay from './pages/QuizOfTheDay';
 import CreateCompetition from './pages/CreateCompetition';
 import CompetitionQuestions from './pages/CompetitionQuestions';
 import OrganizerCorrectCompetition from './pages/OrganizerCorrectCompetition';
-import PublicArchives from './pages/PublicArchives';
+import Archives from './pages/Archives';
 
 function App() {
   return (
@@ -56,7 +56,7 @@ function App() {
                     </ProtectedRoute>
                   }
                 />
-
+<Route path="/archives" element={<Archives />} />
                 <Route
                   path="/quiz/:sessionId"
                   element={
