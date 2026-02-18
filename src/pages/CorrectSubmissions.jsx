@@ -93,9 +93,9 @@ function CorrectSubmissions() {
               
               {/* En-tête de la copie */}
               <div className="flex justify-between items-center mb-6">
-                <span className="text-xl font-black text-black flex items-center gap-2">
-                  👤 {submission.userPseudo || 'Anonyme'}
-                </span>
+                <span className="text-xl font-black text-black">
+  👤 {submission.user?.fullName || submission.user?.pseudo || 'Anonyme'}
+</span>
                 {submission.corrected ? (
                     <div className="text-right">
                         <span className="block text-2xl font-black text-emerald-600">{submission.totalPoints} PTS</span>
@@ -187,3 +187,4 @@ function CorrectSubmissions() {
 }
 
 export default CorrectSubmissions;
+
